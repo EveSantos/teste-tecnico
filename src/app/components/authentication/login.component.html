@@ -1,0 +1,45 @@
+<p-card header="Login">
+  <form for="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-column items-center gap-4 w-full sm:w-56">
+
+    <div class="flex flex-column gap-1">
+      <input
+        pInputText
+        class="flex-auto"
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="Email"
+      />
+
+      @if (loginForm.get('email')?.invalid && (loginForm.get('email')?.touched)) {
+        <p-message severity="error" size="small" variant="simple">
+          @if (loginForm.get('email')?.hasError('required')) {
+            Email obrigatório.
+          }
+          @if (loginForm.get('email')?.hasError('email')) {
+           Preencha um email válido
+          }
+        </p-message>
+      }
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <p-password formControlName="password" [toggleMask]="true" [feedback]="false"
+        placeholder="Senha"></p-password>
+
+      @if (loginForm.get('password')?.invalid && (loginForm.get('password')?.touched)) {
+        <p-message severity="error" size="small" variant="simple">
+          Senha obrigatória.
+        </p-message>
+      }
+    </div>
+
+    <button pButton severity="secondary" type="submit" >
+      <span pButtonLabel>Entrar</span>
+    </button>
+
+  </form>
+</p-card>
+
+
+

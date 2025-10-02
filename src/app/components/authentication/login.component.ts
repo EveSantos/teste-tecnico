@@ -1,0 +1,83 @@
+import { Component, inject } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { PasswordModule } from 'primeng/password';
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, FormArray } from '@angular/forms';
+import { CardModule } from 'primeng/card';
+import { FormsModule, FormControl } from '@angular/forms';
+import { MessageModule } from 'primeng/message';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    ButtonModule,
+    ToastModule,
+    PasswordModule,
+    CardModule,
+    MessageModule
+  ],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent{
+  authService = inject(AuthService);
+  router = inject(Router);
+  fb = inject(FormBuilder);
+
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
+
+  onSubmit() {
+    console.log("Form enviado:", this.loginForm);
+    console.log("É válido?", this.loginForm.valid);
+    if (this.loginForm.valid) {
+      console.log('if')
+      this.authService.login(this.loginForm.value).subscribe((data: any) => {
+        if (this.authService.isLoggedIn()) {
+          this.router.navigate(['/']);
+          console.log('Login bem-sucedido!');
+        }
+        console.log(data);
+          console.log('Login Atual!');
+      });
+    }
+  }
+
+
+
+
+
+
+
+  name = new FormControl('');
+
+  updateName() {
+    this.name.setValue('Nancy');
+  }
+
+
+  // onSubmit() {
+  //   // TODO: Use EventEmitter with form value
+  //   console.log(this.profileForm.value);
+  //   console.log("É válido?");
+  // }
+  updateProfile() {
+    // this.profileForm.patchValue({
+    //   firstName: 'Nancy',
+    //   address: {
+    //     street: '123 Drew Street',
+    //   },
+    // });
+
+    console.log('teste');
+  }
+}
