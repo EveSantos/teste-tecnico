@@ -37,10 +37,7 @@ export class LoginComponent{
   });
 
   onSubmit() {
-    console.log("Form enviado:", this.loginForm);
-    console.log("É válido?", this.loginForm.valid);
     if (this.loginForm.valid) {
-      console.log('if')
       this.authService.login(this.loginForm.value).subscribe((data: any) => {
         if (this.authService.isLoggedIn()) {
           this.router.navigate(['/']);
