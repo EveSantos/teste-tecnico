@@ -24,16 +24,19 @@ export class HomeComponent implements OnInit {
           {
             label: 'Home',
             icon: 'pi pi-home',
+            routerLink: '/'
           }
         ]
         this.menuLogado = [
           {
             label: 'Home',
-            icon: 'pi pi-home'
+            icon: 'pi pi-home',
+            routerLink: '/'
           },
           {
             label: 'Pessoas',
-            icon: 'pi pi-user'
+            icon: 'pi pi-user',
+            routerLink: '/pessoas'
           },
           {
             label: 'Agenda',

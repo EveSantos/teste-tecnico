@@ -38,43 +38,11 @@ export class LoginComponent{
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe((data: any) => {
+      this.authService.login(this.loginForm.value).subscribe(() => {
         if (this.authService.isLoggedIn()) {
           this.router.navigate(['/']);
-          console.log('Login bem-sucedido!');
         }
-        console.log(data);
-          console.log('Login Atual!');
       });
     }
-  }
-
-
-
-
-
-
-
-  name = new FormControl('');
-
-  updateName() {
-    this.name.setValue('Nancy');
-  }
-
-
-  // onSubmit() {
-  //   // TODO: Use EventEmitter with form value
-  //   console.log(this.profileForm.value);
-  //   console.log("É válido?");
-  // }
-  updateProfile() {
-    // this.profileForm.patchValue({
-    //   firstName: 'Nancy',
-    //   address: {
-    //     street: '123 Drew Street',
-    //   },
-    // });
-
-    console.log('teste');
   }
 }
