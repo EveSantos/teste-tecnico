@@ -1,21 +1,21 @@
 <div>
-  <div class="grid">
-      <div class="col">
+  <div class="flex border-round">
+    <div class="w-full font-bold flex align-items-center justify-content-center">
         @if(authService.isLoggedIn()) {
-          <p-menubar [model]="menuLogado"/>
+          <p-menubar class="w-full"  [model]="menuLogado"/>
         }
         @else{
-          <p-menubar [model]="menu"/>
+          <p-menubar class="w-full" [model]="menu"/>
         }
     </div>
-    <div class="col-fixed justify-content-center" style="width:100px">
+    <div class="max-w-5rem font-bold pl-2 flex align-items-center justify-content-center">
       @if (authService.isLoggedIn()) {
-        <p-button class="flex justify-content-center py-1" label="Sair" (click)="authService.logout()" />
+        <p-button class="flex justify-content-center " label="Sair" (click)="authService.logout()" />
       }
       @else {
-        <p-button class="flex justify-content-center py-1" label="Login" routerLink="/login"/>
+        <p-button class="flex justify-content-center " label="Login" routerLink="/login"/>
       }
     </div>
-</div>
+  </div>
   <router-outlet></router-outlet>
 </div>

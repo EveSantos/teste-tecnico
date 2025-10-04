@@ -5,72 +5,74 @@
     <div>
       <p-button class="flex mb-4" label="Adicionar"  (click)="adicionarPessoas()"/>
     </div>
-    <div class="card">
-      <p-table  [value]="(pessoas$ | async) || []" dataKey="id" editMode="row"
-        [tableStyle]="{ 'min-width': '50rem', 'margin': '0 auto' }"
-        [paginator]="true"
-        [rows]="10"
-        [rowsPerPageOptions]="[5, 10, 20]">
-        <ng-template pTemplate="header">
-          <tr>
-            <th style="width:20%">Nome</th>
-            <th style="width:20%">CPF</th>
-            <th style="width:20%">Email</th>
-            <th style="width:20%">Escola</th>
-            <th style="width:20%">Endereço</th>
-            <th style="width:20%"></th>
-          </tr>
-        </ng-template>
+    <div class="card grid  justify-content-center">
+          <div class="col-12 md:w-12 lg:w-12 sm:w-10">
+            <p-table  [value]="(pessoas$ | async) || []" dataKey="id" editMode="row"
+              [tableStyle]="{ 'min-width': '50rem', 'margin': '0 auto' }"
+              [paginator]="true"
+              [rows]="10"
+              [rowsPerPageOptions]="[5, 10, 20]">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width:20%">Nome</th>
+                  <th style="width:20%">CPF</th>
+                  <th style="width:20%">Email</th>
+                  <th style="width:20%">Escola</th>
+                  <th style="width:20%">Endereço</th>
+                  <th style="width:20%"></th>
+                </tr>
+              </ng-template>
 
-        <ng-template pTemplate="body" let-pessoa let-editing="editing" let-ri="rowIndex">
-          <tr [pEditableRow]="pessoa">
-            <td>
-              {{ pessoa.nome }}
-            </td>
+              <ng-template pTemplate="body" let-pessoa let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="pessoa">
+                  <td>
+                    {{ pessoa.nome }}
+                  </td>
 
-            <td>
-              {{ pessoa.cpf }}
-            </td>
+                  <td>
+                    {{ pessoa.cpf }}
+                  </td>
 
-            <td>
-              {{ pessoa.email }}
-            </td>
+                  <td>
+                    {{ pessoa.email }}
+                  </td>
 
-            <td>
-              {{ pessoa.escola }}
-            </td>
+                  <td>
+                    {{ pessoa.escola }}
+                  </td>
 
-            <td>
-               {{ pessoa.endereco }}
-            </td>
+                  <td>
+                     {{ pessoa.endereco }}
+                  </td>
 
-            <td>
-              <div class="flex items-center justify-center gap-2">
-                <button
-                  pButton
-                  pRipple
-                  type="button"
-                  icon="pi pi-pencil"
-                  (click)="exibirModal(pessoa)"
-                  text
-                  rounded
-                  severity="secondary"
-                ></button>
+                  <td>
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="exibirModal(pessoa)"
+                        text
+                        rounded
+                        severity="secondary"
+                      ></button>
 
-                <button
-                  pButton
-                  pRipple
-                  type="button"
-                  icon="pi pi-trash"
-                  (click)="deletarPessoa(pessoa.id)"
-                  text
-                  rounded
-                  severity="secondary"></button>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-trash"
+                        (click)="deletarPessoa(pessoa.id)"
+                        text
+                        rounded
+                        severity="secondary"></button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+      </div>
     </div>
     <div class="card flex justify-center">
         <p-dialog header="Editar Pessoa" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
