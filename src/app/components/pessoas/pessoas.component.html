@@ -2,7 +2,9 @@
 <div class="p-3">
 
   @if(!novoCadastro) {
-    <p-button class="flex" label="Adicionar"  (click)="adicionarPessoas()"/>
+    <div>
+      <p-button class="flex mb-4" label="Adicionar"  (click)="adicionarPessoas()"/>
+    </div>
     <div class="card">
       <p-table  [value]="(pessoas$ | async) || []" dataKey="id" editMode="row"
         [tableStyle]="{ 'min-width': '50rem', 'margin': '0 auto' }"
@@ -23,105 +25,42 @@
         <ng-template pTemplate="body" let-pessoa let-editing="editing" let-ri="rowIndex">
           <tr [pEditableRow]="pessoa">
             <td>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="text" [(ngModel)]="pessoa.nome" />
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ pessoa.nome }}
-                </ng-template>
-              </p-cellEditor>
+              {{ pessoa.nome }}
             </td>
 
             <td>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="text" [(ngModel)]="pessoa.cpf" />
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ pessoa.cpf }}
-                </ng-template>
-              </p-cellEditor>
+              {{ pessoa.cpf }}
             </td>
 
             <td>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="email" [(ngModel)]="pessoa.email" />
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ pessoa.email }}
-                </ng-template>
-              </p-cellEditor>
+              {{ pessoa.email }}
             </td>
 
             <td>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="text" [(ngModel)]="pessoa.escola" />
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ pessoa.escola }}
-                </ng-template>
-              </p-cellEditor>
+              {{ pessoa.escola }}
             </td>
 
             <td>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="text" [(ngModel)]="pessoa.endereco" />
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ pessoa.endereco }}
-                </ng-template>
-              </p-cellEditor>
+               {{ pessoa.endereco }}
             </td>
 
             <td>
               <div class="flex items-center justify-center gap-2">
                 <button
-                  *ngIf="!editing"
                   pButton
                   pRipple
                   type="button"
-                  pInitEditableRow
                   icon="pi pi-pencil"
-                  (click)="onRowEditInit(pessoa)"
+                  (click)="exibirModal(pessoa)"
                   text
                   rounded
                   severity="secondary"
                 ></button>
 
                 <button
-                  *ngIf="editing"
                   pButton
                   pRipple
                   type="button"
-                  pSaveEditableRow
-                  icon="pi pi-check"
-                  (click)="onRowEditSave(pessoa)"
-                  text
-                  rounded
-                  severity="secondary"
-                ></button>
-
-                <button
-                  *ngIf="editing"
-                  pButton
-                  pRipple
-                  type="button"
-                  pCancelEditableRow
-                  icon="pi pi-times"
-                  (click)="onRowEditCancel(pessoa, ri)"
-                  text
-                  rounded
-                  severity="secondary"></button>
-
-                <button
-                  pButton
-                  pRipple
-                  type="button"
-                  pCancelEditableRow
                   icon="pi pi-trash"
                   (click)="deletarPessoa(pessoa.id)"
                   text
@@ -133,9 +72,74 @@
         </ng-template>
       </p-table>
     </div>
-  }
-  @else{
-    <app-cadastro></app-cadastro>
-  }
-</div>
+    <div class="card flex justify-center">
+        <p-dialog header="Editar Pessoa" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+          <form [formGroup]="editarForm" class="">
+            <div class=" field">
+              <label  for="nome">Nome</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="nome" formControlName="nome" />
+            </div>
 
+            <div class="field mb-3">
+              <label class="mr-3" for="cpf">CPF</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="cpf" formControlName="cpf" />
+            </div>
+
+            <div class="field mb-3">
+              <label class="mr-3" for="email">Email</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="email" formControlName="email" />
+            </div>
+
+            <div class="field mb-3">
+              <label class="mr-3" for="escola">Escola</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="escola" formControlName="escola" />
+            </div>
+
+            <div class="field mb-3">
+              <label class="mr-3" for="endereco">Endereço</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="endereco" formControlName="endereco" />
+            </div>
+
+            <div class="field mb-3">
+              <label class="mr-3" for="telefone">Telefone</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="telefone" formControlName="telefone" />
+            </div>
+
+            <div class="field mb-3">
+              <label class="mr-3" for="nomeSocial">Nome Social</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="nomeSocial" formControlName="nomeSocial" />
+            </div>
+            <div class="field mb-3">
+              <label class="mr-3" for="cnpj">CNPJ</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="cnpj" formControlName="cnpj" />
+            </div>
+            <div class="field mb-3">
+              <label class="mr-3" for="cidade">Cidade</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="cidade" formControlName="cidade" />
+            </div>
+            <div class="field mb-3">
+              <label class="mr-3" for="cep">CEP</label>
+              <input class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText id="cep" formControlName="cep" />
+            </div>
+            <div class="field mb-3">
+              <label class="mr-3" for="estado">Estado</label>
+              <input pInputText class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" id="estado" formControlName="estado" />
+            </div>
+            <div class="field mb-3">
+              <label class="mr-3" for="pais">País</label>
+              <input pInputText class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" id="pais" formControlName="pais" />
+            </div>
+
+            <div class="flex justify-end gap-2 mt-4">
+              <p-button label="Cancelar" severity="secondary" (click)="visible = false"></p-button>
+              <p-button label="Salvar" (click)="salvarPessoa()"></p-button>
+            </div>
+          </form>
+        </p-dialog>
+
+    </div>
+
+  }
+  <app-cadastro *ngIf="novoCadastro" (pessoaCadastrada)="voltarParaTabela()"></app-cadastro>
+
+</div>

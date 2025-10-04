@@ -1,14 +1,15 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { Pessoa } from '../../interface/IPessoa';
 import { PessoaService } from '../../services/pessoa.service';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { CadastroComponent } from '../cadastro/cadastro.component';
+import { Dialog } from 'primeng/dialog';
 
 @Component({
   selector: 'app-pessoas',
@@ -17,45 +18,62 @@ import { CadastroComponent } from '../cadastro/cadastro.component';
     TableModule,
     InputTextModule,
     FormsModule,
+    ReactiveFormsModule,
     SelectModule,
     ButtonModule,
     CommonModule,
-    CadastroComponent],
+    CadastroComponent,
+    FormsModule,
+    Dialog
+  ],
   templateUrl: './pessoas.component.html',
   styleUrl: './pessoas.component.css'
 })
-export class PessoasComponent implements OnInit{
+export class PessoasComponent implements OnInit {
+  @Input() pessoa: Pessoa | null = null;
+  fb = inject(FormBuilder);
+  form!: FormGroup;
   listaPessoas: Pessoa[] = []
   clonedPessoa: { [key: string]: Pessoa } = {};
   pessoas$: Observable<Pessoa[]>;
   novoCadastro: boolean = false;
+  modalVisible = false;
+  pessoaSelecionada: Pessoa | null = null;
+  visible: boolean = false;
+  editarForm!: FormGroup;
+
   constructor(private pessoaService: PessoaService) {
     this.pessoas$ = this.pessoaService.pessoas$;
   }
 
   ngOnInit() {
+    this.editarForm = new FormGroup({
+      id: new FormControl(null),
+      nome: new FormControl(''),
+      cpf: new FormControl(''),
+      email: new FormControl(''),
+      escola: new FormControl(''),
+      endereco: new FormControl(''),
+      nomeSocial: new FormControl(''),
+      cnpj: new FormControl(''),
+      cidade: new FormControl(''),
+      cep: new FormControl(''),
+      estado: new FormControl(''),
+      pais: new FormControl(''),
+      telefone: new FormControl('')
+    });
     this.pessoaService.getPessoas();
   }
 
-  onRowEditInit(pessoa: Pessoa) {
-    this.clonedPessoa[pessoa.id.toString()] = { ...pessoa };
-  }
-
-  onRowEditSave(pessoa: Pessoa) {
-    this.pessoaService.updatePessoa(pessoa).subscribe({
-      next: () => {
-        delete this.clonedPessoa[pessoa.id.toString()];
-      }
-    })
-  }
-
-  onRowEditCancel(pessoa: Pessoa, index: number) {
-    const pessoaOg = this.clonedPessoa[pessoa.id.toString()];
-    if(pessoaOg){
-      this.pessoaService.retaurarPessoaLista(pessoaOg);
+  salvarPessoa() {
+    if (this.editarForm.valid) {
+      const pessoaAtualizada: Pessoa = this.editarForm.value;
+      this.pessoaService.updatePessoa(pessoaAtualizada);
+      this.visible = false;
+      this.pessoaSelecionada = null;
     }
-    delete this.clonedPessoa[pessoa.id.toString()];
   }
+
 
   deletarPessoa(id: number) {
     this.pessoaService.deletePessoa(id);
@@ -64,4 +82,28 @@ export class PessoasComponent implements OnInit{
   adicionarPessoas(){
     this.novoCadastro = true;
   }
+  voltarParaTabela() {
+  this.novoCadastro = false;
+}
+
+  exibirModal(pessoa?: Pessoa) {
+    this.editarForm = this.fb.group({
+      id: [pessoa?.id || ''],
+      nome: [pessoa?.nome || ''],
+      email: [pessoa?.email || ''],
+      nomeSocial: [pessoa?.nomeSocial || ''],
+      cpf: [pessoa?.cpf || ''],
+      escola: [pessoa?.escola || ''],
+      endereco: [pessoa?.endereco || ''],
+      cnpj: [pessoa?.cnpj || ''],
+      cidade: [pessoa?.cidade || ''],
+      cep: [pessoa?.cep || ''],
+      estado: [pessoa?.estado || ''],
+      pais: [pessoa?.pais || ''],
+      telefone: [pessoa?.telefone || '']
+    });
+    this.visible = true;
+  }
+
+
 }

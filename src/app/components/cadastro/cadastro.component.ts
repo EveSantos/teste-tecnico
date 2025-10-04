@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { StepsModule } from 'primeng/steps';
@@ -33,11 +33,13 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class CadastroComponent implements OnInit {
   fb = inject(FormBuilder);
-  pessoasService = inject(PessoaService)
+  pessoasService = inject(PessoaService);
+  @Output() pessoaCadastrada = new EventEmitter<void>();
+
   cadastroForm = this.fb.group({
     nome: ['', [Validators.required]],
     nomeSocial: [''],
-    cpf: ['', Validators.required],
+    cpf: [null, Validators.required],
     cnpj: [''],
     escola: [null, Validators.required],
     endereco: ['', Validators.required],
@@ -48,23 +50,25 @@ export class CadastroComponent implements OnInit {
     telefone: [''],
     email: ['', [Validators.required, Validators.email]],
   });
-    countries: any[] | undefined;
+  countries: any[] | undefined;
 
-    selectedCountry: string | undefined;
+  selectedCountry: string | undefined;
+
   ngOnInit() {
-        this.countries = [
-            { name: 'Australia', code: 'AU' },
-            { name: 'Brazil', code: 'BR' },
-            { name: 'China', code: 'CN' },
-            { name: 'Egypt', code: 'EG' },
-            { name: 'France', code: 'FR' },
-            { name: 'Germany', code: 'DE' },
-            { name: 'India', code: 'IN' },
-            { name: 'Japan', code: 'JP' },
-            { name: 'Spain', code: 'ES' },
-            { name: 'United States', code: 'US' }
-        ];
-    }
+    this.countries = [
+        { name: 'Australia', code: 'AU' },
+        { name: 'Brazil', code: 'BR' },
+        { name: 'China', code: 'CN' },
+        { name: 'Egypt', code: 'EG' },
+        { name: 'France', code: 'FR' },
+        { name: 'Germany', code: 'DE' },
+        { name: 'India', code: 'IN' },
+        { name: 'Japan', code: 'JP' },
+        { name: 'Spain', code: 'ES' },
+        { name: 'United States', code: 'US' }
+    ];
+  }
+
   onSubmit() {
     const formValue = this.cadastroForm.value;
     const idNovo = uuidv4();
@@ -72,7 +76,7 @@ export class CadastroComponent implements OnInit {
       id: idNovo,
       nome: formValue.nome || '',
       nomeSocial: formValue.nomeSocial || '',
-      cpf:  formValue.cpf ? Number(formValue.cpf) : undefined,
+      cpf:  formValue.cpf || 0,
       cnpj: formValue.cnpj || '',
       escola: formValue.escola || '',
       endereco: formValue.endereco || '',
@@ -85,6 +89,8 @@ export class CadastroComponent implements OnInit {
     };
     if(this.cadastroForm.valid){
       this.pessoasService.cadastrarPessoa(pessoa);
+      this.pessoaCadastrada.emit();
     }
   }
+
 }

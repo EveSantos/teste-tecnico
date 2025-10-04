@@ -23,9 +23,23 @@ export class PessoaService {
       }
     });
   }
+
   updatePessoa(p: Pessoa) {
-    return this.httpClient.put<Pessoa>(`${this.baseUrl}/pessoas/${p.id}`, p);
+    this.httpClient.put<Pessoa>(`${this.baseUrl}/pessoas/${p.id}`, p).subscribe({
+      next: (response: Pessoa) => {
+        const listaPessoas = this.pessoasSubject.getValue();
+        const index = listaPessoas.findIndex(pessoa => pessoa.id === response.id);
+        if (index !== -1) {
+          listaPessoas[index] = response;
+          this.pessoasSubject.next([...listaPessoas]);
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
+
 
   deletePessoa(id: number) {
     this.httpClient.delete<Pessoa[]>(`${this.baseUrl}/pessoas/${id}`).subscribe({

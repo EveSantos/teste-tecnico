@@ -1,26 +1,3 @@
-<div class="grid">
-      <div class="col">
-        @if(authService.isLoggedIn()) {
-          <p-menubar [model]="menuLogado"/>
-        }
-        @else{
-          <p-menubar [model]="menu"/>
-        }
-    </div>
-    <div class="col-fixed justify-content-center" style="width:100px">
-      @if (authService.isLoggedIn()) {
-        <p-button class="flex justify-content-center py-1" label="Sair" (click)="authService.logout()" />
-      }
-      @else {
-        <p-button class="flex justify-content-center py-1" label="Login" routerLink="/login"/>
-      }
-    </div>
-</div>
-@if (itemAtivo === 'pessoas') {
-  <app-pessoas></app-pessoas>
-}
-@if (itemAtivo === 'home') {
-  <h1 >
-    Resumo
-  </h1>
-}
+<h1 >
+  Resumo
+</h1>

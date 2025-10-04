@@ -92,28 +92,8 @@
                       <p-inputgroup class="field col-6">
                           <input  id="cidade" pInputText formControlName="cidade" placeholder="Cidade" />
                       </p-inputgroup>
-                      <p-inputgroup class="field col-6">
-                        <div class="card flex justify-center">
-                          <p-select
-                            [options]="countries"
-                            formControlName="pais"
-                            optionLabel="name"
-                            [filter]="true"
-                            filterBy="name"
-                            [showClear]="true"
-                            placeholder="Select a Country"
-                            class="w-full">
-
-                            <ng-template #selectedItem let-selectedOption>
-                              <div class="flex items-center gap-2">{{ selectedOption.name }}</div>
-                            </ng-template>
-
-                            <ng-template let-country #item>
-                              <div class="flex items-center gap-2">{{ country.name }}</div>
-                            </ng-template>
-                          </p-select>
-                        </div>
-
+                      <p-inputgroup class="field col-3">
+                        <p-select formControlName="pais" [options]="countries" optionLabel="name" placeholder="País" />
                       </p-inputgroup>
                     </div>
                   </div>

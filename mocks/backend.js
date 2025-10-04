@@ -12,126 +12,151 @@ let users = [
   { id: 2, email: 'evelyn@teste.com', password: 'senha' }
 ];
 
-let pessoas = [
+let pessoas =  [
   {
     id: uuidv4(),
-    nome: 'Bamboo Watch',
-    cpf: 12345678900,
-    email: 'cliente1@email.com',
-    escola: 'Escola A',
-    endereco: 'Rua 1, Cidade X'
+    nome: 'Ana Clara Souza',
+    cpf: 12345678901,
+    email: 'ana.clara.souza@example.com',
+    escola: 'Colégio Estadual de Ilhéus',
+    endereco: 'Rua das Orquídeas, 123, Bairro Pontal',
+    cidade: 'Ilhéus',
+    cep: '45654010',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '73988776655'
   },
   {
     id: uuidv4(),
-    nome: 'Black Watch',
-    cpf: 98765432100,
-    email: 'cliente2@email.com',
-    escola: 'Escola B',
-    endereco: 'Rua 2, Cidade Y'
+    nome: 'João Pedro Martins',
+    cpf: 98765432102,
+    email: 'joao.martins@example.com',
+    escola: 'Escola Municipal Heitor Dias',
+    endereco: 'Avenida Dois de Julho, 789, Centro',
+    cidade: 'Itabuna',
+    cep: '45600002',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '73999885544'
   },
   {
     id: uuidv4(),
-    nome: 'Blue Band',
-    cpf: 45678912300,
-    email: 'cliente3@email.com',
-    escola: 'Escola C',
-    endereco: 'Rua 3, Cidade Z'
+    nome: 'Mariana Costa e Silva',
+    cpf: 11122233344,
+    email: 'mari.costa@example.com',
+    escola: 'Universidade de São Paulo (USP)',
+    endereco: 'Avenida Paulista, 1500',
+    cnpj: '12345678000199',
+    cidade: 'São Paulo',
+    cep: '01310200',
+    estado: 'SP',
+    pais: 'Brasil',
+    telefone: '11933445566'
   },
   {
     id: uuidv4(),
-    nome: 'Blue T-Shirt',
-    cpf: 78912345600,
-    email: 'cliente4@email.com',
-    escola: 'Escola D',
-    endereco: 'Rua 4, Cidade W'
+    nome: 'Maria Eduarda Ferreira',
+    cpf: 45678912303,
+    email: 'maria.e.ferreira@example.com',
+    escola: 'Colégio da Polícia Militar - Dendezeiros',
+    endereco: 'Rua da Paciência, 45, Rio Vermelho',
+    cidade: 'Salvador',
+    cep: '41950010',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '71981234567'
   },
   {
     id: uuidv4(),
-    nome: 'Bracelet',
-    cpf: 32165498700,
-    email: 'cliente5@email.com',
-    escola: 'Escola E',
-    endereco: 'Rua 5, Cidade V'
+    nome: 'Pedro Almeida Gusmão',
+    cpf: 22233344455,
+    email: 'pedro.gusmao@example.com',
+    escola: 'Instituto Federal da Bahia (IFBA)',
+    endereco: 'Avenida Contorno, 345, Comércio',
+    cnpj: '98765432000110',
+    cidade: 'Salvador',
+    cep: '40015010',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '71987654321'
   },
   {
     id: uuidv4(),
-    nome: 'Red Shoes',
-    cpf: 65498732100,
-    email: 'cliente6@email.com',
-    escola: 'Escola F',
-    endereco: 'Rua 6, Cidade U'
+    nome: 'Lucas Gabriel Costa',
+    cpf: 32165498705,
+    email: 'lucas.costa@example.com',
+    escola: 'Universidade Estadual de Santa Cruz (UESC)',
+    endereco: 'Rodovia Jorge Amado, km 16, Salobrinho',
+    cidade: 'Ilhéus',
+    cep: '45662900',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '73991112233'
   },
   {
     id: uuidv4(),
-    nome: 'Green Hat',
-    cpf: 85274196300,
-    email: 'cliente7@email.com',
-    escola: 'Escola G',
-    endereco: 'Rua 7, Cidade T'
+    nome: 'Beatriz Lima',
+    cpf: 65498732106,
+    email: 'beatriz.lima.art@example.com',
+    escola: 'Escola de Belas Artes da UFBA',
+    endereco: 'Rua Araújo Pinho, 200, Canela',
+    cidade: 'Salvador',
+    cep: '40110150',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '71988889900'
   },
   {
     id: uuidv4(),
-    nome: 'Silver Ring',
-    cpf: 96325874100,
-    email: 'cliente8@email.com',
-    escola: 'Escola H',
-    endereco: 'Rua 8, Cidade S'
+    nome: 'Guilherme Andrade',
+    cpf: 85274196307,
+    email: 'gui.andrade@example.com',
+    escola: 'SENAI Cimatec',
+    endereco: 'Avenida Orlando Gomes, 1845, Piatã',
+    cidade: 'Salvador',
+    cep: '41650010',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '71996554433'
   },
   {
     id: uuidv4(),
-    nome: 'Golden Necklace',
-    cpf: 74185296300,
-    email: 'cliente9@email.com',
-    escola: 'Escola I',
-    endereco: 'Rua 9, Cidade R'
+    nome: 'Isabela Rocha',
+    cpf: 96325874108,
+    email: 'isabela.rocha@example.com',
+    escola: 'Instituto Federal da Bahia (IFBA)',
+    endereco: 'Avenida Centenário, 500, Chame-Chame',
+    cidade: 'Vitória da Conquista',
+    cep: '45028015',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '77988221144'
   },
   {
     id: uuidv4(),
-    nome: 'Leather Jacket',
-    cpf: 15975348600,
-    email: 'cliente10@email.com',
-    escola: 'Escola J',
-    endereco: 'Rua 10, Cidade Q'
+    nome: 'Rafael Azevedo',
+    cpf: 74185296309,
+    email: 'rafael.azevedo@example.com',
+    escola: 'Colégio Anísio Teixeira',
+    endereco: 'Praça da Bandeira, 10, Centro',
+    cidade: 'Jequié',
+    cep: '45203902',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '73999001212'
   },
   {
     id: uuidv4(),
-    nome: 'White Shirt',
-    cpf: 35715948600,
-    email: 'cliente11@email.com',
-    escola: 'Escola K',
-    endereco: 'Rua 11, Cidade P'
-  },
-  {
-    id: uuidv4(),
-    nome: 'Blue Jeans',
-    cpf: 25896314700,
-    email: 'cliente12@email.com',
-    escola: 'Escola L',
-    endereco: 'Rua 12, Cidade O'
-  },
-  {
-    id: uuidv4(),
-    nome: 'Sports Cap',
-    cpf: 14725836900,
-    email: 'cliente13@email.com',
-    escola: 'Escola M',
-    endereco: 'Rua 13, Cidade N'
-  },
-  {
-    id: uuidv4(),
-    nome: 'Running Shoes',
-    cpf: 36925814700,
-    email: 'cliente14@email.com',
-    escola: 'Escola N',
-    endereco: 'Rua 14, Cidade M'
-  },
-  {
-    id: uuidv4(),
-    nome: 'Winter Coat',
-    cpf: 95175385200,
-    email: 'cliente15@email.com',
-    escola: 'Escola O',
-    endereco: 'Rua 15, Cidade L'
+    nome: 'Larissa Mendes Campos',
+    cpf: 55544433322,
+    email: 'larissa.m.campos@example.com',
+    escola: 'Universidade Federal do Sul da Bahia (UFSB)',
+    endereco: 'Avenida Beira Mar, 2500, Malhado',
+    cidade: 'Ilhéus',
+    cep: '45651500',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '73981828384'
   }
 ];
 
