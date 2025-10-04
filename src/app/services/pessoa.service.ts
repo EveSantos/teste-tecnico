@@ -27,17 +27,6 @@ export class PessoaService {
     return this.httpClient.put<Pessoa>(`${this.baseUrl}/pessoas/${p.id}`, p);
   }
 
-  // deletePessoa(id: number) {
-  //   this.httpClient.delete<Pessoa[]>(`${this.baseUrl}/pessoas/${id}`).subscribe({
-  //     next: (response: Pessoa[]) => {
-  //       this.pessoasSubject.next(response);
-  //     },
-  //     error: (error) => {
-  //       console.log(error)
-  //     }
-  //   });
-  // }
-
   deletePessoa(id: number) {
     this.httpClient.delete<Pessoa[]>(`${this.baseUrl}/pessoas/${id}`).subscribe({
       next: (response: Pessoa[]) => {
@@ -54,5 +43,17 @@ export class PessoaService {
     const index = listaPessoas.findIndex(p => p.id == pessoaOg.id)
     listaPessoas[index] = pessoaOg
     this.pessoasSubject.next(listaPessoas)
+  }
+
+  cadastrarPessoa(pessoaCadastro: Pessoa){
+    this.httpClient.post<Pessoa[]>(`${this.baseUrl}/pessoas/cadastrar-pessoa`, pessoaCadastro).subscribe({
+      next: (response: Pessoa[]) => {
+        console.log('Pessoa cadastrada com sucesso');
+        this.pessoasSubject.next(response);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }
