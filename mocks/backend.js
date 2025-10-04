@@ -157,6 +157,45 @@ let pessoas =  [
     estado: 'BA',
     pais: 'Brasil',
     telefone: '73981828384'
+  },
+  {
+    id: uuidv4(),
+    nome: 'Valentina Ribeiro Gomes',
+    cpf: 66655544433,
+    email: 'valentina.gomes@example.com',
+    escola: 'Colégio Madre Maria Villac',
+    endereco: 'Estrada do Arraial, 1250, Arraial d\'Ajuda',
+    cidade: 'Porto Seguro',
+    cep: '45816000',
+    estado: 'BA',
+    pais: 'Brasil',
+    telefone: '73981122334'
+  },
+  {
+    id: uuidv4(),
+    nome: 'Davi Carvalho Pereira',
+    cpf: 77766655544,
+    email: 'davi.pereira@example.com',
+    escola: 'Colégio Loyola',
+    endereco: 'Rua Antônio de Albuquerque, 800, Savassi',
+    cidade: 'Belo Horizonte',
+    cep: '30112011',
+    estado: 'MG',
+    pais: 'Brasil',
+    telefone: '31998877665'
+  },
+  {
+    id: uuidv4(),
+    nome: 'Sofia Oliveira Barbosa',
+    cpf: 88877766655,
+    email: 'sofia.barbosa@example.com',
+    escola: 'Universidade Federal do Rio de Janeiro (UFRJ)',
+    endereco: 'Avenida Atlântica, 1702, Copacabana',
+    cidade: 'Rio de Janeiro',
+    cep: '22021001',
+    estado: 'RJ',
+    pais: 'Brasil',
+    telefone: '21987654321'
   }
 ];
 
