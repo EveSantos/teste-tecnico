@@ -199,6 +199,102 @@ let pessoas =  [
   }
 ];
 
+let planos = [
+  {
+    "plano": "Plano de Melhoria da Escola",
+    "objetivos": [
+      {
+        "selecionado": true,
+        "nome": "Melhorar desempenho dos alunos",
+        "problemas": [
+          {
+            "descricaoProblema": "Baixo rendimento em matemática",
+            "resultado": "Melhoria das notas em 20%",
+            "etapa": "Diagnóstico",
+            "possuiCausa": "Sim",
+            "prioridade": "Alta",
+            "categoria": "Acadêmico"
+          },
+          {
+            "descricaoProblema": "Falta de participação nas aulas",
+            "resultado": "Aumento de 30% na participação",
+            "etapa": "Planejamento",
+            "possuiCausa": "Não",
+            "prioridade": "Média",
+            "categoria": "Comportamental"
+          }
+        ]
+      },
+      {
+        "selecionado": true,
+        "nome": "Aprimorar estrutura da escola",
+        "problemas": [
+          {
+            "descricaoProblema": "Biblioteca com poucos livros atualizados",
+            "resultado": "Atualização de 100 novos títulos",
+            "etapa": "Execução",
+            "possuiCausa": "Sim",
+            "prioridade": "Alta",
+            "categoria": "Infraestrutura"
+          }
+        ]
+      },
+      {
+        "selecionado": false,
+        "nome": "Ampliar atividades extracurriculares",
+        "problemas": []
+      }
+    ]
+  },
+  {
+  "plano": "Plano de Inclusão Digital",
+    "objetivos": [
+      {
+        "selecionado": true,
+        "nome": "Ampliar acesso a computadores e internet",
+        "problemas": [
+          {
+            "descricaoProblema": "Poucos computadores disponíveis no laboratório",
+            "resultado": "Aquisição de 20 novos computadores",
+            "etapa": "Planejamento",
+            "possuiCausa": "Sim",
+            "prioridade": "Alta",
+            "categoria": "Infraestrutura"
+          },
+          {
+            "descricaoProblema": "Conexão de internet lenta",
+            "resultado": "Instalação de fibra óptica de 200mb",
+            "etapa": "Execução",
+            "possuiCausa": "Sim",
+            "prioridade": "Média",
+            "categoria": "Tecnologia"
+          }
+        ]
+      },
+      {
+        "selecionado": true,
+        "nome": "Capacitar professores em ferramentas digitais",
+        "problemas": [
+          {
+            "descricaoProblema": "Falta de domínio em plataformas de ensino online",
+            "resultado": "Treinamento de 100% dos professores",
+            "etapa": "Diagnóstico",
+            "possuiCausa": "Sim",
+            "prioridade": "Alta",
+            "categoria": "Capacitação"
+          }
+        ]
+      },
+      {
+        "selecionado": false,
+        "nome": "Criar espaço maker na escola",
+        "problemas": []
+      }
+    ]
+  }
+
+]
+
 const agenda=[];
 
 // Rota de login
@@ -226,6 +322,16 @@ app.get('/', (req, res) => {
 
 app.get('/pessoas', (req, res) => {
   res.json(pessoas);
+});
+
+app.get('/planos', (req, res) => {
+  res.json(planos);
+});
+
+app.post('/planos/cadastrar-plano', (req, res) => {
+  const novoPlano = req.body;
+  planos.push(novoPlano);
+  res.status(201).json(planos);
 });
 
 app.put('/pessoas/:id', (req, res) => {

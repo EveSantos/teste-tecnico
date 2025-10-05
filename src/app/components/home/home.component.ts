@@ -12,6 +12,8 @@ import { PessoaService } from '../../services/pessoa.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { PlanoDeAcaoService } from '../../services/plano-de-acao.service';
+import { Plano } from '../../interface/IPlanoAcao';
 
 @Component({
   selector: 'app-home',
@@ -34,16 +36,22 @@ export class HomeComponent implements OnInit{
 
   authService = inject(AuthService);
   pessoas$: Observable<Pessoa[]>;
+  planos$: Observable<Plano[]>;
   totalPessoas: number = 0;
+  totalPlanos: number = 0;
 
-  constructor(private pessoaService: PessoaService) {
+  constructor(private pessoaService: PessoaService, private planoService: PlanoDeAcaoService) {
     this.pessoas$ = this.pessoaService.pessoas$;
+    this.planos$ = this.planoService.planos$;
   }
   ngOnInit() {
     this.pessoaService.pessoas$.subscribe(pessoas => {
       this.totalPessoas = pessoas.length;
-      console.log('Total de pessoas:', this.totalPessoas);
+    });
+    this.planoService.planos$.subscribe(planos => {
+      this.totalPlanos = planos.length;
     });
     this.pessoaService.getPessoas();
+    this.planoService.getPlanos();
   }
 }

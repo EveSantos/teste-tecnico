@@ -83,8 +83,8 @@ export class PessoasComponent implements OnInit {
     this.novoCadastro = true;
   }
   voltarParaTabela() {
-  this.novoCadastro = false;
-}
+    this.novoCadastro = false;
+  }
 
   exibirModal(pessoa?: Pessoa) {
     this.editarForm = this.fb.group({

@@ -6,4 +6,5 @@ export const routes: Routes = [
   { path: '', loadComponent: () => import('./components/home/home.component').then(m => HomeComponent) },
   { path: 'login', loadComponent: () =>import('./components/authentication/login.component').then(m => m.LoginComponent) },
   { path: 'pessoas', loadComponent: () => import('./components/pessoas/pessoas.component').then(m => m.PessoasComponent), canActivate: [authGuard] },
+  { path: 'plano-de-acao', loadComponent: () => import('./components/plano-de-acao/tabela-acao/tabela-acao.component').then(m => m.TabelaAcaoComponent), canActivate: [authGuard] },
 ];

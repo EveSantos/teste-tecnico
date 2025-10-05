@@ -1,0 +1,75 @@
+
+<div class="">
+  @if(!novoCadastroPlano) {
+    <div class="surface-card p-4 border-round shadow-2 w-11 mx-auto mb-4 mt-5">
+
+      <div class="flex justify-end mb-4">
+        <p-button label="Adicionar" (click)="adicionarPlanos()"/>
+      </div>
+
+      <p-table [value]="(planos$ | async) || []" dataKey="plano">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:2rem"></th>
+            <th>Plano</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-plano let-expanded="expanded">
+          <tr>
+            <td>
+              <a href="#" [pRowToggler]="plano">
+                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+              </a>
+            </td>
+            <td>{{ plano.plano }}</td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-plano>
+          <tr>
+            <td colspan="6">
+              <div class="p-3">
+                <h4>Objetivos</h4>
+
+                <p-table [value]="plano.objetivos" dataKey="nome">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th style="width:2rem"></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-objetivo let-expanded="expanded">
+                    <tr>
+                      <td>
+                        <a href="#" [pRowToggler]="objetivo">
+                          <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                        </a>
+                      </td>
+                      <td>{{ objetivo.nome }}</td>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="rowexpansion" let-objetivo>
+                    <tr>
+                      <td colspan="2">
+                        <div class="p-3">
+                          <h5>Problemas</h5>
+                          <ul>
+                            <li *ngFor="let prob of objetivo.problemas">
+                              {{ prob.descricaoProblema }} - <b>Prioridade:</b> {{ prob.prioridade }}
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  }
+  <app-plano-de-acao *ngIf="novoCadastroPlano" (planoCadastrada)="voltarParaTabela()"></app-plano-de-acao>
+</div>

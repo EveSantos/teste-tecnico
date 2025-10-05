@@ -62,7 +62,6 @@ export class PessoaService {
   cadastrarPessoa(pessoaCadastro: Pessoa){
     this.httpClient.post<Pessoa[]>(`${this.baseUrl}/pessoas/cadastrar-pessoa`, pessoaCadastro).subscribe({
       next: (response: Pessoa[]) => {
-        console.log('Pessoa cadastrada com sucesso');
         this.pessoasSubject.next(response);
       },
       error: (error) => {

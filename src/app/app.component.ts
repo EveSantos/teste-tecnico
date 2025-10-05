@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
           id: 'plano',
           label: 'Plano de Ação',
           icon: 'pi pi-file',
+          routerLink: '/plano-de-acao',
           command: () => this.itemSelecionado('plano')
         }
       ];

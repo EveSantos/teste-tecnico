@@ -1,0 +1,117 @@
+
+
+<div class="card p-4 shadow-2 border-round w-full md:w-8 mx-auto mt-5">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p-stepper [value]="1" >
+    <div class="hidden md:block ">
+      <p-step-list>
+        <p-step [value]="1">Etapa 1</p-step>
+        <p-step [value]="2">Etapa 2</p-step>
+        <p-step [value]="3">Etapa 3</p-step>
+      </p-step-list>
+    </div>
+      <p-step-panels>
+        <p-step-panel [value]="1">
+          <ng-template #content let-activateCallback="activateCallback">
+
+            <div class="mb-4 w-10">
+              <label for="plano" class="block mb-1 ">Plano</label>
+              <input id="plano" pInputText formControlName="plano" placeholder="Título do plano" class="w-full" />
+            </div>
+
+            <div formArrayName="objetivos" class="space-y-3 mb-4 w-5">
+
+              <label for="plano" class="block mb-1 ">Objetivos</label>
+              <div *ngFor="let obj of objetivos.controls; let i = index" [formGroupName]="i" class="field flex items-center gap-2">
+                <p-checkbox formControlName="selecionado" binary="true"></p-checkbox>
+                <input pInputText formControlName="nome" placeholder="Objetivo {{i+1}}" class="flex-1" />
+              </div>
+            </div>
+            <div class="flex justify-content-center">
+                <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="2">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div formArrayName="objetivos" class="space-y-6">
+                <div *ngFor="let obj of objetivos.controls; let i = index" [formGroupName]="i">
+                  <ng-container *ngIf="obj.get('selecionado')?.value">
+                    <h3 class="mb-3">{{ obj.get('nome')?.value }}</h3>
+
+                    <div formGroupName="novoProblema" class="formgrid grid mb-3">
+                      <div class="field col-8">
+                        <input pInputText formControlName="descricaoProblema" placeholder="Descrição do problema*" class="w-full" />
+                      </div>
+                      <div class="field col-2">
+                        <p-select formControlName="etapa" [options]="etapas" optionLabel="label" placeholder="Etapa*" class="w-full"></p-select>
+                      </div>
+                      <div class="field col-2">
+                        <p-select formControlName="possuiCausa" [options]="causas" optionLabel="label" placeholder="Possui causa*" class="w-full"></p-select>
+                      </div>
+                      <div class="field col-6">
+                        <input pInputText formControlName="resultado" placeholder="Resultado" class="w-full" />
+                      </div>
+                      <div class="field col-2">
+                        <p-select formControlName="prioridade" [options]="prioridades" optionLabel="label" placeholder="Prioridade*" class="w-full"></p-select>
+                      </div>
+                      <div class="field col-2">
+                        <p-select formControlName="categoria" [options]="categorias" optionLabel="label" placeholder="Categoria*" class="w-full"></p-select>
+                      </div>
+                      <div class="field col-2 flex align-items-end">
+                        <p-button label="Adicionar" (onClick)="addProblema(i)" class="w-full" />
+                      </div>
+                    </div>
+
+                    <div formArrayName="problemas">
+                      <p-table [value]="getProblemas(i).controls" [tableStyle]="{ 'min-width': '60rem' }">
+                        <ng-template #header>
+                          <tr>
+                            <th>Descrição do problema</th>
+                            <th>Etapa</th>
+                            <th>Possui causa</th>
+                            <th>Resultado</th>
+                            <th>Prioridade</th>
+                            <th>Categoria</th>
+                          </tr>
+                        </ng-template>
+                        <ng-template #body let-problema let-j="rowIndex">
+                          <tr [formGroupName]="j">
+                            <td>{{ problema.value.descricaoProblema }}</td>
+                            <td>{{ problema.value.etapa?.label }}</td>
+                            <td>{{ problema.value.possuiCausa?.label }}</td>
+                            <td>{{ problema.value.resultado }}</td>
+                            <td>{{ problema.value.prioridade?.label }}</td>
+                            <td>{{ problema.value.categoria?.label }}</td>
+                          </tr>
+                        </ng-template>
+                      </p-table>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+
+               <div class="flex justify-content-center flex-wrap gap-4 mt-5">
+                  <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(1)" />
+                    <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                </div>
+            </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="3">
+            <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex justify-content-center flex-wrap gap-4">
+                  <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(2)" />
+                  <p-toast />
+                    <button type="submit" class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700">Concluir</button>
+                </div>
+            </ng-template>
+        </p-step-panel>
+      </p-step-panels>
+  </p-stepper>
+  </form>
+</div>
+
