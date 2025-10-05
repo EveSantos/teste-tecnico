@@ -1,8 +1,8 @@
-<div class=" justify-center">
+<div class=" justify-center mt-5">
   <div class="card  ">
     <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
 
-      <p-stepper [value]="1" class="basis-[40rem] hidden md:block ">
+      <p-stepper [value]="1" class="basis-[40rem] hidden md:block surface-card p-4 border-round shadow-2 w-11 sm:w-12 md:w-10 lg:w-8 mx-auto mb-4">
         <div class="hidden md:block ">
           <p-step-list>
             <p-step [value]="1">Dados Cadastrais</p-step>
@@ -107,116 +107,119 @@
           </p-step-panels>
       </p-stepper>
       <div class="card">
-        <p-stepper [value]="1" class="block md:hidden overflow-y-auto max-h-[90vh] ">
-            <p-step-item [value]="1">
-              <p-step>Dados Cadastrais</p-step>
-              <p-step-panel [value]="1">
-                <ng-template #content let-activateCallback="activateCallback">
-                  <div class="formgrid ">
-                    <div class="field pr-3">
-                      <p-inputgroup class="field">
-                          <input  id="nome" pInputText formControlName="nome"placeholder="Nome" />
-                      </p-inputgroup>
-                      <p-inputgroup class="field">
-                          <input type="number" pInputText id="cpf" formControlName="cpf" placeholder="CPF" />
-                      </p-inputgroup>
-                      <p-inputgroup class="field">
-                          <input type="number" pInputText id="cnpj" formControlName="cnpj" placeholder="CNPJ" />
-                      </p-inputgroup>
-                      <p-inputgroup class="field ">
-                        <input  id="nomeSocial" pInputText formControlName="nomeSocial" placeholder="Nome Social" />
-                      </p-inputgroup>
-                      <p-inputgroup class="field ">
-                        <input id="escola" pInputText formControlName="escola" placeholder="Escola" />
-                      </p-inputgroup>
-                    </div>
-                  </div>
-                  <div class="flex justify-content-start">
-                      <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
-                  </div>
-                </ng-template>
-              </p-step-panel>
-            </p-step-item>
+        <div class="basis-[40rem] block md:hidden surface-card p-4 border-round shadow-2">
 
-            <p-step-item [value]="2">
-              <p-step>Dados de Contatao</p-step>
-              <p-step-panel [value]="2">
+          <p-stepper [value]="1" class="block md:hidden overflow-y-auto max-h-[90vh] ">
+              <p-step-item [value]="1">
+                <p-step>Dados Cadastrais</p-step>
+                <p-step-panel [value]="1">
                   <ng-template #content let-activateCallback="activateCallback">
                     <div class="formgrid ">
-                      <div class="field pr-3" >
-
-                        <p-inputgroup class="field ">
-                          <input  id="email" type="email" pInputText formControlName="email" placeholder="Email"  />
+                      <div class="field pr-3">
+                        <p-inputgroup class="field">
+                            <input  id="nome" pInputText formControlName="nome"placeholder="Nome" />
                         </p-inputgroup>
-
+                        <p-inputgroup class="field">
+                            <input type="number" pInputText id="cpf" formControlName="cpf" placeholder="CPF" />
+                        </p-inputgroup>
+                        <p-inputgroup class="field">
+                            <input type="number" pInputText id="cnpj" formControlName="cnpj" placeholder="CNPJ" />
+                        </p-inputgroup>
                         <p-inputgroup class="field ">
-                          <input  id="telefone" pInputText formControlName="telefone"  placeholder="Telefone" />
+                          <input  id="nomeSocial" pInputText formControlName="nomeSocial" placeholder="Nome Social" />
+                        </p-inputgroup>
+                        <p-inputgroup class="field ">
+                          <input id="escola" pInputText formControlName="escola" placeholder="Escola" />
                         </p-inputgroup>
                       </div>
                     </div>
-                    <div class="flex justify-content-start flex-wrap gap-4">
-                      <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
-                      (onClick)="activateCallback(1)" />
-                      <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                    <div class="flex justify-content-start">
+                        <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
                     </div>
                   </ng-template>
-              </p-step-panel>
-            </p-step-item>
+                </p-step-panel>
+              </p-step-item>
 
-            <p-step-item [value]="3">
-                <p-step>Dados de endereço</p-step>
-            <p-step-panel [value]="3">
-                <ng-template #content let-activateCallback="activateCallback">
+              <p-step-item [value]="2">
+                <p-step>Dados de Contatao</p-step>
+                <p-step-panel [value]="2">
+                    <ng-template #content let-activateCallback="activateCallback">
+                      <div class="formgrid ">
+                        <div class="field pr-3" >
 
-                  <div class="formgrid ">
+                          <p-inputgroup class="field ">
+                            <input  id="email" type="email" pInputText formControlName="email" placeholder="Email"  />
+                          </p-inputgroup>
 
-                      <div class="field pr-3" >
-                        <p-inputgroup class="field ">
-                            <input id="endereco" pInputText formControlName="endereco" placeholder="Endereço completo" />
-                        </p-inputgroup>
-
-                        <p-inputgroup class="field">
-                            <input type="number" id="cep" pInputText formControlName="cep" placeholder="CEP" />
-                        </p-inputgroup>
-                        <p-inputgroup class="field" >
-                            <input  id="estado" pInputText formControlName="estado" placeholder="Estado"/>
-                        </p-inputgroup>
-                        <p-inputgroup class="field">
-                            <input  id="cidade" pInputText formControlName="cidade" placeholder="Cidade" />
-                        </p-inputgroup>
-                        <p-inputgroup class="field">
-                        <div class="card flex justify-center">
-                          <p-select
-                              [options]="countries"
-                              formControlName="pais"
-                              optionLabel="name"
-                              [filter]="true"
-                              filterBy="name"
-                              [showClear]="true"
-                              placeholder="Select a Country"
-                              class="w-full">
-
-                              <ng-template #selectedItem let-selectedOption>
-                                <div class="flex items-center gap-2">{{ selectedOption.name }}</div>
-                              </ng-template>
-
-                              <ng-template let-country #item>
-                                <div class="flex items-center gap-2">{{ country.name }}</div>
-                              </ng-template>
-                          </p-select>
+                          <p-inputgroup class="field ">
+                            <input  id="telefone" pInputText formControlName="telefone"  placeholder="Telefone" />
+                          </p-inputgroup>
                         </div>
-                        </p-inputgroup>
                       </div>
-                  </div>
-                    <div class="flex justify-content-start flex-wrap gap-4">
-                      <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
-                      (onClick)="activateCallback(2)" />
-                        <button type="submit" class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700">Concluir</button>
+                      <div class="flex justify-content-start flex-wrap gap-4">
+                        <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
+                        (onClick)="activateCallback(1)" />
+                        <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                      </div>
+                    </ng-template>
+                </p-step-panel>
+              </p-step-item>
+
+              <p-step-item [value]="3">
+                  <p-step>Dados de endereço</p-step>
+              <p-step-panel [value]="3">
+                  <ng-template #content let-activateCallback="activateCallback">
+
+                    <div class="formgrid ">
+
+                        <div class="field pr-3" >
+                          <p-inputgroup class="field ">
+                              <input id="endereco" pInputText formControlName="endereco" placeholder="Endereço completo" />
+                          </p-inputgroup>
+
+                          <p-inputgroup class="field">
+                              <input type="number" id="cep" pInputText formControlName="cep" placeholder="CEP" />
+                          </p-inputgroup>
+                          <p-inputgroup class="field" >
+                              <input  id="estado" pInputText formControlName="estado" placeholder="Estado"/>
+                          </p-inputgroup>
+                          <p-inputgroup class="field">
+                              <input  id="cidade" pInputText formControlName="cidade" placeholder="Cidade" />
+                          </p-inputgroup>
+                          <p-inputgroup class="field">
+                          <div class="card flex justify-center">
+                            <p-select
+                                [options]="countries"
+                                formControlName="pais"
+                                optionLabel="name"
+                                [filter]="true"
+                                filterBy="name"
+                                [showClear]="true"
+                                placeholder="Select a Country"
+                                class="w-full">
+
+                                <ng-template #selectedItem let-selectedOption>
+                                  <div class="flex items-center gap-2">{{ selectedOption.name }}</div>
+                                </ng-template>
+
+                                <ng-template let-country #item>
+                                  <div class="flex items-center gap-2">{{ country.name }}</div>
+                                </ng-template>
+                            </p-select>
+                          </div>
+                          </p-inputgroup>
+                        </div>
                     </div>
-                </ng-template>
-            </p-step-panel>
-            </p-step-item>
-        </p-stepper>
+                      <div class="flex justify-content-start flex-wrap gap-4">
+                        <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
+                        (onClick)="activateCallback(2)" />
+                          <button type="submit" class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700">Concluir</button>
+                      </div>
+                  </ng-template>
+              </p-step-panel>
+              </p-step-item>
+          </p-stepper>
+        </div>
       </div>
     </form>
   </div>
