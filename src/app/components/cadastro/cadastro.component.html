@@ -16,12 +16,12 @@
                 <div class="formgrid grid ">
                   <div class="field col ">
                     <p-inputgroup class="field col-6">
-                        <input  id="nome" pInputText formControlName="nome"placeholder="Nome" required />
+                        <input  id="nome" pInputText formControlName="nome"placeholder="Nome*" required />
                     </p-inputgroup>
                   <div class="formgrid grid">
                       <div class="col-6">
                       <p-inputgroup class="field col-6">
-                          <input type="number" pInputText id="cpf" formControlName="cpf" placeholder="CPF" />
+                          <input type="number" pInputText id="cpf" formControlName="cpf" placeholder="CPF*" />
                       </p-inputgroup>
                     </div>
                     <div class="col-6">
@@ -36,13 +36,21 @@
                         <input  id="nomeSocial" pInputText formControlName="nomeSocial" placeholder="Nome Social" />
                     </p-inputgroup>
                     <p-inputgroup class="field col-6">
-                        <input id="escola" pInputText formControlName="escola" placeholder="Escola" />
+                        <input id="escola" pInputText formControlName="escola" placeholder="Escola*" />
                     </p-inputgroup>
                   </div>
                 </div>
                 <div class="flex justify-content-center">
-                    <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+                  <p-button
+                    label="Próximo"
+                    icon="pi pi-arrow-right"
+                    iconPos="right"
+                    [disabled]="cadastroForm.get('nome')?.invalid
+                              || cadastroForm.get('cpf')?.invalid
+                              || cadastroForm.get('escola')?.invalid"
+                    (onClick)="activateCallback(2)" />
                 </div>
+
               </ng-template>
             </p-step-panel>
 
@@ -51,7 +59,7 @@
                   <div class="formgrid grid">
                     <div class="field col col-6">
                       <p-inputgroup class="field col-6">
-                          <input  id="email" type="email" pInputText formControlName="email" placeholder="Email"  />
+                          <input  id="email" type="email" pInputText formControlName="email" placeholder="Email*"  />
                       </p-inputgroup>
 
                       <p-inputgroup class="field col-6">
@@ -62,7 +70,7 @@
                   <div class="flex justify-content-center flex-wrap gap-4">
                       <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
                       (onClick)="activateCallback(1)" />
-                      <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                      <p-button [disabled]="cadastroForm.get('email')?.invalid"  label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
                   </div>
                 </ng-template>
             </p-step-panel>
@@ -73,7 +81,7 @@
                   <div class="formgrid grid">
                     <div class="field col">
                       <p-inputgroup class="field col-6">
-                          <input id="endereco" pInputText formControlName="endereco" placeholder="Endereço completo" />
+                          <input id="endereco" pInputText formControlName="endereco" placeholder="Endereço completo*" />
                       </p-inputgroup>
                       <div class="formgrid grid">
                         <div class="col-6">
@@ -117,10 +125,10 @@
                     <div class="formgrid ">
                       <div class="field pr-3">
                         <p-inputgroup class="field">
-                            <input  id="nome" pInputText formControlName="nome"placeholder="Nome" />
+                            <input  id="nome" pInputText formControlName="nome"placeholder="Nome*" />
                         </p-inputgroup>
                         <p-inputgroup class="field">
-                            <input type="number" pInputText id="cpf" formControlName="cpf" placeholder="CPF" />
+                            <input type="number" pInputText id="cpf" formControlName="cpf" placeholder="CPF*" />
                         </p-inputgroup>
                         <p-inputgroup class="field">
                             <input type="number" pInputText id="cnpj" formControlName="cnpj" placeholder="CNPJ" />
@@ -129,13 +137,20 @@
                           <input  id="nomeSocial" pInputText formControlName="nomeSocial" placeholder="Nome Social" />
                         </p-inputgroup>
                         <p-inputgroup class="field ">
-                          <input id="escola" pInputText formControlName="escola" placeholder="Escola" />
+                          <input id="escola" pInputText formControlName="escola" placeholder="Escola*" />
                         </p-inputgroup>
                       </div>
                     </div>
-                    <div class="flex justify-content-start">
-                        <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
-                    </div>
+                    <div class="flex justify-content-center">
+                        <p-button
+                          label="Próximo"
+                          icon="pi pi-arrow-right"
+                          iconPos="right"
+                          [disabled]="cadastroForm.get('nome')?.invalid
+                                    || cadastroForm.get('cpf')?.invalid
+                                    || cadastroForm.get('escola')?.invalid"
+                          (onClick)="activateCallback(2)" />
+                      </div>
                   </ng-template>
                 </p-step-panel>
               </p-step-item>
@@ -148,7 +163,7 @@
                         <div class="field pr-3" >
 
                           <p-inputgroup class="field ">
-                            <input  id="email" type="email" pInputText formControlName="email" placeholder="Email"  />
+                            <input  id="email" type="email" pInputText formControlName="email" placeholder="Email*"  />
                           </p-inputgroup>
 
                           <p-inputgroup class="field ">
@@ -159,7 +174,7 @@
                       <div class="flex justify-content-start flex-wrap gap-4">
                         <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
                         (onClick)="activateCallback(1)" />
-                        <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                        <p-button  [disabled]="cadastroForm.get('email')?.invalid"label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
                       </div>
                     </ng-template>
                 </p-step-panel>
@@ -174,7 +189,7 @@
 
                         <div class="field pr-3" >
                           <p-inputgroup class="field ">
-                              <input id="endereco" pInputText formControlName="endereco" placeholder="Endereço completo" />
+                              <input id="endereco" pInputText formControlName="endereco" placeholder="Endereço completo*" />
                           </p-inputgroup>
 
                           <p-inputgroup class="field">

@@ -126,5 +126,21 @@ export class PlanoDeAcaoComponent implements OnInit {
       });
     }
   }
+  hasValidObjective(): boolean {
+    return (this.objetivos.controls as FormGroup[]).some(obj => {
+      const nome = obj.get('nome')?.value;
+      return nome && nome.trim() !== '';
+    });
+  }
+  get isStep1Valid(): boolean {
+  const plano = this.form.get('plano')?.value;
+  const objetivos = this.form.get('objetivos')?.value;
+
+  const temObjetivo = objetivos?.some(
+    (o: any) => o.nome && o.nome.trim() !== ''
+  );
+
+  return !!plano && temObjetivo;
+}
 
 }

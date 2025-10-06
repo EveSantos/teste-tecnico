@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { StepsModule } from 'primeng/steps';
 import { StepperModule } from 'primeng/stepper';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
@@ -37,19 +37,20 @@ export class CadastroComponent implements OnInit {
   @Output() pessoaCadastrada = new EventEmitter<void>();
 
   cadastroForm = this.fb.group({
-    nome: ['', [Validators.required]],
-    nomeSocial: [''],
-    cpf: [null, Validators.required],
-    cnpj: [''],
-    escola: [null, Validators.required],
-    endereco: ['', Validators.required],
-    cidade: ['' ],
-    cep: [''],
-    estado: [null],
-    pais: [null],
-    telefone: [''],
-    email: ['', [Validators.required, Validators.email]],
+    nome: new FormControl('', [Validators.required]),
+    nomeSocial: new FormControl(''),
+    cpf: new FormControl(null, [Validators.required]),
+    cnpj: new FormControl(''),
+    escola: new FormControl(null, [Validators.required]),
+    endereco: new FormControl('', [Validators.required]),
+    cidade: new FormControl(''),
+    cep: new FormControl(''),
+    estado: new FormControl(null),
+    pais: new FormControl(null),
+    telefone: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
+
   countries: any[] | undefined;
 
   selectedCountry: string | undefined;
@@ -69,6 +70,9 @@ export class CadastroComponent implements OnInit {
     ];
   }
 
+  test(){
+    console.log(this.cadastroForm.errors)
+  }
   onSubmit() {
     const formValue = this.cadastroForm.value;
     const idNovo = uuidv4();
@@ -87,6 +91,7 @@ export class CadastroComponent implements OnInit {
       telefone: formValue.telefone || '',
       email: formValue.email || '',
     };
+
     if(this.cadastroForm.valid){
       this.pessoasService.cadastrarPessoa(pessoa);
       this.pessoaCadastrada.emit();
