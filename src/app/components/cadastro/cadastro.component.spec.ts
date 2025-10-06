@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CadastroComponent } from './cadastro.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('CadastroComponent', () => {
   let component: CadastroComponent;
@@ -8,7 +11,11 @@ describe('CadastroComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CadastroComponent]
+  imports: [CadastroComponent, BrowserAnimationsModule],
+        providers: [
+          provideHttpClient(),
+          provideHttpClientTesting()
+        ]
     })
     .compileComponents();
 

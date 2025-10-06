@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TabelaAcaoComponent } from './tabela-acao.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('TabelaAcaoComponent', () => {
   let component: TabelaAcaoComponent;
@@ -8,7 +11,11 @@ describe('TabelaAcaoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TabelaAcaoComponent]
+  imports: [TabelaAcaoComponent, BrowserAnimationsModule],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     })
     .compileComponents();
 
