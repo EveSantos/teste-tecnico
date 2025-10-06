@@ -1,32 +1,59 @@
+
 # TesteTecnico
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Este projeto possui um front-end Angular e um back-end simulado (mock) em Node.js.
 
-## Development server
+## Pré-requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [Angular CLI](https://angular.io/cli) (versão 18 ou superior)
 
-## Back-end
+Instale as dependências do projeto:
 
-Run  `node mocks/backend.js` | `node mocks/backend.js`.
+```bash
+npm install
+```
 
-## Code scaffolding
+## Como rodar o back-end (mock)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+O back-end simulado está localizado em `mocks/backend.js`.
 
-## Build
+Para iniciar o mock do back-end, execute:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+node mocks/backend.js
+```
 
-## Running unit tests
+O servidor será iniciado em `http://localhost:3000`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Como rodar o front-end (Angular)
 
-## Running end-to-end tests
+Em outro terminal, execute:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+ng serve
+```
 
-## Further help
+O front-end estará disponível em `http://localhost:4200`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Rodando os testes unitários
 
+```bash
+ng test
+```
+
+## Build do projeto
+
+```bash
+ng build
+```
+
+## Outras informações
+
+Para mais comandos do Angular CLI, utilize:
+
+```bash
+ng help
+```
+
+Ou acesse a [documentação oficial do Angular CLI](https://angular.dev/tools/cli).
