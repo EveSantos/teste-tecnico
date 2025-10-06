@@ -210,23 +210,23 @@
                     <h3 class="mb-2">{{ obj.get('nome')?.value }}</h3>
 
                     <!-- Novo problema -->
-                    <div formGroupName="novoProblema" class="formgrid grid gap-2 mb-3">
+                    <div formGroupName="novoProblema" class="formgrid grid gap-2 mb- w-11">
                       <div class="field col-12">
                         <input pInputText formControlName="descricaoProblema" placeholder="Descrição do problema*" class="w-full" />
                       </div>
-                      <div class="field col-6">
+                      <div class="field col-12">
                         <p-select formControlName="etapa" [options]="etapas" optionLabel="label" placeholder="Etapa*" class="w-full"></p-select>
                       </div>
-                      <div class="field col-6">
+                      <div class="field col-12">
                         <p-select formControlName="possuiCausa" [options]="causas" optionLabel="label" placeholder="Possui causa*" class="w-full"></p-select>
                       </div>
                       <div class="field col-12">
                         <input pInputText formControlName="resultado" placeholder="Resultado" class="w-full" />
                       </div>
-                      <div class="field col-6">
+                      <div class="field col-12">
                         <p-select formControlName="prioridade" [options]="prioridades" optionLabel="label" placeholder="Prioridade*" class="w-full"></p-select>
                       </div>
-                      <div class="field col-6">
+                      <div class="field col-12">
                         <p-select formControlName="categoria" [options]="categorias" optionLabel="label" placeholder="Categoria*" class="w-full"></p-select>
                       </div>
                       <div class="field col-12">
@@ -234,7 +234,6 @@
                       </div>
                     </div>
 
-                    <!-- Tabela de problemas adicionados -->
                     <div formArrayName="problemas" class="overflow-x-auto">
                       <p-table [value]="getProblemas(i).controls" [tableStyle]="{ 'min-width': '40rem' }">
                         <ng-template pTemplate="header">
@@ -260,7 +259,7 @@
                 </div>
               </div>
 
-              <div class="flex justify-content-between mt-4">
+              <div class="flex justify-content-between mt-4 w-10">
                 <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left" (onClick)="activateCallback(1)" />
                 <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
               </div>
